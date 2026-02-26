@@ -3,40 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <style>
         table, th, td {
             border: 1px solid black;
         }
     </style>
 </head>
-<body>
-<p>
-    Hello
-    <a href ="/hello">hello</a>
-</p>
-<p>
-    Bye
-    <a href ="/bye">bye</a>
-</p>
-<table>
-    <tr>
-        <th>메소드</th>
-        <th>URL</th>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td><a href="/resthello">/resthello</a></td>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td><a href="/resthi">/resthi</a></td>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td><a href="/restbye">/restbye</a></td>
-    </tr>
-</table>
 
+<body>
+<!--Thymeleaf Template 사용하기-->
+<div>
+    <h3>Thymeleaf Template 사용하기</h3>
+    <p>
+        Hello
+        <a href="/hello">/hello</a>
+    </p>
+    <p>
+        Bye
+        <a href="/bye">/bye</a>
+    </p>
+</div>
+
+<!--RestController 사용하기-->
+<div>
+    <h3>RestController 사용하기</h3>
+    <table>
+        <tr>
+            <th>메소드</th>
+            <th>URL</th>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>
+                <a href="/api/hello">/api/hello</a>
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>
+                <a href="/api/hi">/api/hi</a>
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>
+                <form action="/api/greeting" method="get">
+                    <label for="name">name:</label>
+                    <input id="name" name="name" type="text">
+                    <button type="submit">제출</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>POST</td>
+            <td>
+<!--                form에서는 Content-Type이 application/x-www-form-urlencoded로 전송되므로,-->
+<!--                application/json 으로 전송하기 위해서는 Ajax 사용하여야 함.-->
+                <form id="byeForm">
+                    <label for="name2">name:</label>
+                    <input id="name2" name="name" type="text">
+                    <button>버튼</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!--Static Content 사용하기-->
+<div>
+    <h3>Static Content 사용하기</h3>
+    <p>
+        <a href="/hello-static.html">/hello-static.html</a>
+    </p>
+</div>
+
+<script>
+    document.getElementById('byeForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 기본 폼 제출 동작 방지
+
+        // 1. FormData 객체 생성
+        const formData = new FormData(this);
+        const plainFormData = Object.fromEntries(formData.entries());
+
+        // 2. JSON 문자열로 변환
+        const formDataJSONString = JSON.stringify(plainFormData);
+
+        // 3. fetch를 이용한 POST 요청
+        fetch('/api/bye', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // 중요: 컨텐츠 타입 설정
+            },
+            body: formDataJSONString
+        })
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data)))
+            .catch(error => console.error('Error:', error));
+    });
+</script>
 </body>
 </html>
