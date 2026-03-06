@@ -32,21 +32,25 @@
         <tr>
             <th>메소드</th>
             <th>URL</th>
+            <th>Param</th>
         </tr>
         <tr>
             <td>GET</td>
             <td>
                 <a href="/api/hello">/api/hello</a>
             </td>
+            <td>-</td>
         </tr>
         <tr>
             <td>GET</td>
             <td>
                 <a href="/api/hi">/api/hi</a>
             </td>
+            <td>-</td>
         </tr>
         <tr>
             <td>GET</td>
+            <td>/api/greeting</td>
             <td>
                 <form action="/api/greeting" method="get">
                     <label for="name">name:</label>
@@ -57,13 +61,27 @@
         </tr>
         <tr>
             <td>POST</td>
+            <td>/api/bye</td>
             <td>
 <!--                form에서는 Content-Type이 application/x-www-form-urlencoded로 전송되므로,-->
 <!--                application/json 으로 전송하기 위해서는 Ajax 사용하여야 함.-->
                 <form id="byeForm">
                     <label for="name2">name:</label>
                     <input id="name2" name="name" type="text">
-                    <button>버튼</button>
+                    <button type="submit">버튼</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>GET</td>
+            <td>/math/add</td>
+            <td>
+                <form action="/math/add" method="get">
+                    <label for="a">a:</label>
+                    <input id="a" name="a" type="number" value="1">
+                    <label for="b">b:</label>
+                    <input id="b" name="b" type="number" value="1">
+                    <button type="submit">제출</button>
                 </form>
             </td>
         </tr>
