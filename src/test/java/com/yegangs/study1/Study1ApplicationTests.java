@@ -1,9 +1,9 @@
-package com.yegangs.study2;
+package com.yegangs.study1;
 
-import com.yegangs.study2.answer.Answer;
-import com.yegangs.study2.answer.AnswerRepository;
-import com.yegangs.study2.question.Question;
-import com.yegangs.study2.question.QuestionRepository;
+import com.yegangs.study1.answer.Answer;
+import com.yegangs.study1.answer.AnswerRepository;
+import com.yegangs.study1.question.Question;
+import com.yegangs.study1.question.QuestionRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-class Study2ApplicationTests {
+class Study1ApplicationTests {
 
     @Autowired
     private QuestionRepository questionRepository;

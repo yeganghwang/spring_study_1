@@ -1,6 +1,6 @@
-package com.yegangs.study2.question;
+package com.yegangs.study1.question;
 
-import com.yegangs.study2.answer.Answer;
+import com.yegangs.study1.answer.Answer;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;

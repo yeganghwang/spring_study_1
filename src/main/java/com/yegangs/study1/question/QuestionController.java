@@ -1,4 +1,4 @@
-package com.yegangs.study2.question;
+package com.yegangs.study1.question;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

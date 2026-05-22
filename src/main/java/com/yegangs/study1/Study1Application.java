@@ -1,13 +1,13 @@
-package com.yegangs.study2;
+package com.yegangs.study1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Study2Application {
+public class Study1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Study2Application.class, args);
+        SpringApplication.run(Study1Application.class, args);
         System.out.println("http://localhost:8080");
     }
 }

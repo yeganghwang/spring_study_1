@@ -1,4 +1,4 @@
-package com.yegangs.study2;
+package com.yegangs.study1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
