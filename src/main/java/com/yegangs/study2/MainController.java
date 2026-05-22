@@ -5,17 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
-    @GetMapping("hello")
+public class MainController {
+    @GetMapping("/yegangs")
     @ResponseBody
-    public String hello() {
-        System.out.println("hello");
-        return "Hello, Spring Boot!";
-    }
-
-    @GetMapping("/")
     public String index() {
-        System.out.println("index");
-        return "route";
+        System.out.println("yegangs");
+        return "Hello! Welcome to yegangs.";
     }
 }
