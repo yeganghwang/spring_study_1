@@ -1,4 +1,4 @@
-package com.yegangs.study2;
+package com.yegangs.study2.answer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
