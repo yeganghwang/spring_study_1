@@ -11,4 +11,14 @@ public class MainController {
     public String yegangs() {
         return "Hello! Welcome to yegangs.";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/question/list";
+    }
+
+    @GetMapping("route")
+    public String route() {
+        return "route";
+    }
 }
