@@ -11,12 +11,12 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("question")
+@RequestMapping("/question")
 public class QuestionController {
 
     private final QuestionService questionService;
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public String list(Model model) {
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
@@ -24,7 +24,7 @@ public class QuestionController {
         return "question_list";
     }
 
-    @GetMapping("detail/{id}")
+    @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
