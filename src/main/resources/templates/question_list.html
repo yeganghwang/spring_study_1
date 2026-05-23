@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" layout:decorate="~{layout}">
 <head>
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-    <meta charset="UTF-8">
     <title>질문 목록 보기</title>
 </head>
 <body>
@@ -10,7 +7,7 @@
     <a href="/route">route</a>
 </div>
 
-<div class="container-my-3">
+<div layout:fragment="content" class="container-my-3">
     <table class="table">
         <thead class="table-dark">
         <tr>
