@@ -1,5 +1,6 @@
 package com.yegangs.study1.question;
 
+import com.yegangs.study1.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.sql.ast.tree.select.SortSpecification;
 import org.springframework.data.domain.*;
@@ -33,10 +34,11 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser user) {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
+        q.setAuthor(user);
         q.setCreateDate(LocalDateTime.now());
         this.questionRepository.save(q);
     }

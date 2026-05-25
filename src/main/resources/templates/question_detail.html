@@ -1,4 +1,5 @@
-<html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html lang="en" layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title th:text="${question.subject}">질문 상세보기</title>
 </head>
@@ -11,6 +12,9 @@
             <div class="card-text" style="white-space: pre-line" th:text="${question.content}">내용</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">
+                        <span th:if="${question.author != null}" th:text="${question.author.username}"></span>
+                    </div>
                     <div th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm:ss')}">yyyy-MM-dd HH:mm:ss</div>
                 </div>
             </div>
@@ -26,6 +30,9 @@
             <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
+                    <div th:if="${answer.author != null}" th:text="${answer.author.username}">
+
+                    </div>
                     <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm:ss')}"></div>
                 </div>
             </div>
@@ -35,8 +42,11 @@
     <!--제출란-->
     <form class="my-3" th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="post">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
-        <label for="content"></label><textarea class="form-control" th:field="*{content}" rows="15"></textarea>
-        <input class="btn btn-primary my-2" type="submit" value="답변등록">
+        <label for="content"></label>
+        <textarea sec:authorize="isAnonymous()" disabled class="form-control" th:field="*{content}" rows="10"></textarea>
+        <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
+        <a sec:authorize="isAnonymous()" th:href="@{/user/login}" class="btn btn-primary">로그인</a>
+        <input sec:authorize="isAuthenticated()" class="btn btn-primary my-2" type="submit" value="답변등록">
     </form>
 </div>
 

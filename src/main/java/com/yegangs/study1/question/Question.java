@@ -1,6 +1,7 @@
 package com.yegangs.study1.question;
 
 import com.yegangs.study1.answer.Answer;
+import com.yegangs.study1.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
@@ -23,6 +24,9 @@ public class Question {
     private String content;
 
     private LocalDateTime createDate;
+
+    @ManyToOne
+    private SiteUser author;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
