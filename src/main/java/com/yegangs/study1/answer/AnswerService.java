@@ -23,12 +23,18 @@ public class AnswerService {
         }
     }
 
-    public void create(Question question, String content, SiteUser author) {
+    public Answer create(Question question, String content, SiteUser author) {
         Answer answer = new Answer();
         answer.setQuestion(question);
         answer.setContent(content);
         answer.setAuthor(author);
         answer.setCreateDate(LocalDateTime.now());
+        this.answerRepository.save(answer);
+        return answer;
+    }
+
+    public void vote(Answer answer, SiteUser siteUser) {
+        answer.getVoter().add(siteUser);
         this.answerRepository.save(answer);
     }
 
