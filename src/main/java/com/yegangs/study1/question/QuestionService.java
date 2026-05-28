@@ -43,6 +43,11 @@ public class QuestionService {
         this.questionRepository.save(q);
     }
 
+    public void vote(Question question, SiteUser siteUser) {
+        question.getVoter().add(siteUser);
+        this.questionRepository.save(question);
+    }
+
     public void modify(Question question, String subject, String content) {
         question.setSubject(subject);
         question.setContent(content);
