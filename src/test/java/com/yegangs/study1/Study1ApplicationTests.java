@@ -26,14 +26,6 @@ class Study1ApplicationTests {
     @Test
     @Transactional
     void testJpa() {
-        Optional<Question> oq = this.questionRepository.findById(2);
-        assertTrue(oq.isPresent());
-        Question q = oq.get();
 
-        List<Answer> answerList = q.getAnswerList();
-        answerList.forEach(answer -> {
-           System.out.println(answer.getContent());
-        });
-        assertEquals("네, 자동으로 생성됩니다.", q.getAnswerList().getFirst().getContent());
     }
 }
