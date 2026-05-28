@@ -1,5 +1,7 @@
 package com.yegangs.study1.question;
 
+import com.yegangs.study1.CommonUtil;
+import com.yegangs.study1.answer.Answer;
 import com.yegangs.study1.answer.AnswerForm;
 import com.yegangs.study1.user.SiteUser;
 import com.yegangs.study1.user.UserService;
@@ -25,6 +27,7 @@ public class QuestionController {
 
     private final QuestionService questionService;
     private final UserService userService;
+    private final CommonUtil commonUtil;
 
     @GetMapping("/list")
     public String list(Model model,
@@ -37,7 +40,13 @@ public class QuestionController {
     @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
+        List<Answer> answerList = this.questionService.getQuestion(id).getAnswerList();
+        answerList.forEach(answer -> {
+            answer.setContent(commonUtil.markdown(answer.getContent()));
+        });
         model.addAttribute("question", question);
+        model.addAttribute("markdown", commonUtil.markdown(question.getContent()));
+
         return "question_detail";
     }
 
